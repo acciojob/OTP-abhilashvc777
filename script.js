@@ -1,6 +1,6 @@
 //your JS code here. If required.
 // const input  = document.getElementsByClassName("code")
-const div1 = document.getElementsByClassName("code-container")
+// const div1 = document.getElementsByClassName("code-container")
 
 // div1[0].addEventListener("keypress", (e)=>{
 // 	// console.log(e.target)
@@ -28,25 +28,19 @@ const div1 = document.getElementsByClassName("code-container")
 // Get all the input fields
 const inputs = document.querySelectorAll(".code");
 
-// Loop over each input field
 inputs.forEach((input, index) => {
-  // Add an event listener for 'input' event
   input.addEventListener("input", (e) => {
-    // If the user has entered a value, focus on the next input field
-    if (e.target.value) {
-      if (inputs[index + 1]) {
-        inputs[index + 1].focus();
-      }
+    if (e.target.value.length > 1) {
+      e.target.value = e.target.value.slice(0, 1);
+    }
+    if (e.target.value && inputs[index + 1]) {
+      inputs[index + 1].focus();
     }
   });
 
-  // Add an event listener for 'keydown' event
   input.addEventListener("keydown", (e) => {
-    // If the user has pressed the backspace key and the input field is empty, focus on the previous input field
-    if (e.key === "Backspace" && !e.target.value) {
-      if (inputs[index - 1]) {
-        inputs[index - 1].focus();
-      }
+    if (e.key === "Backspace" && !e.target.value && inputs[index - 1]) {
+      inputs[index - 1].focus();
     }
   });
 });
